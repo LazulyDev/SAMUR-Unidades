@@ -1,0 +1,45 @@
+.dashboard-shell {
+	display: grid;
+	width: 100%;
+	grid-template-rows: 10rem minmax(0, 1fr);
+	min-height: 100vh;
+	height: 100vh;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+
+.dashboard-header {
+	min-width: 0;
+}
+
+.units-panel,
+.map-section {
+	min-height: 0;
+	overflow-y: auto;
+}
+
+.map-section {
+	overflow: hidden;
+}
+
+#map {
+	min-height: 0;
+	height: calc(100% - 3rem);
+}
+
+@media (min-width: 1024px) {
+	.dashboard-shell {
+		grid-template-columns: 24rem minmax(0, 1fr);
+		grid-template-rows: 5rem minmax(0, 1fr);
+	}
+
+	.dashboard-header {
+		grid-column: 1 / -1;
+	}
+
+	.units-panel,
+	.map-section {
+		width: 100%;
+		max-width: none;
+	}
+}
