@@ -1,3 +1,35 @@
+#sidebar {
+	transition: width 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+	z-index: 9999;
+}
+
+#sidebar span {
+	opacity: 0;
+	display: inline-block;
+	position: static;
+	overflow: hidden;
+	white-space: nowrap;
+	max-width: 0;
+	width: auto !important;
+	transition: opacity 0.1s ease-in-out, max-width 0.3s ease-in-out;
+}
+
+#sidebar a {
+	display: flex;
+	align-items: center;
+	white-space: nowrap;
+}
+
+#sidebar:hover {
+	width: 150px;
+	box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%);
+}
+
+#sidebar:hover span {
+	opacity: 1;
+	max-width: 10rem;
+}
+
 .dashboard-shell {
 	display: grid;
 	width: 100%;
@@ -16,6 +48,19 @@
 .map-section {
 	min-height: 0;
 	overflow-y: auto;
+}
+
+.units-panel {
+	position: relative;
+	padding-bottom: 5rem;
+}
+
+.units-panel-action {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgb(229 231 235);
 }
 
 .map-section {
