@@ -153,12 +153,26 @@
         <section id="map-section" class="map-section w-full flex-1 p-6" aria-labelledby="map-title">
             <h2 id="map-title" class="mb-4 text-xl font-bold text-gray-900">Mapa de unidades</h2>
             <div id="map" class="flex min-h-96 w-full h-full rounded border border-gray-300 bg-white" aria-label="Mapa de unidades">
-                <div class="flex h-full w-full flex-col items-center justify-center text-center">
+                <!-- <div class="flex h-full w-full flex-col items-center justify-center text-center">
                     <img src="/miscelanea/obra" alt="ícono de obras">
                     <h1 class="w-full">SECCIÓN EN DESARROLLO</h1>
-                </div>
+                </div> -->
 
-                <!-- El mapa se inicializara aqui desde el componente Angular. -->
+                <google-map 
+                    height="100%" 
+                    width="100%" 
+                    [center]="center" 
+                    [zoom]="zoom"
+                    [options]="options">
+                    
+                    <!-- Iterar sobre las unidades e imprimir sus ubicaciones -->
+                    @for (unidad of unidades(); track unidad.UIDunidad) {
+                        <map-marker 
+                        [position]="{ lat: unidad.latitud, lng: unidad.longitud }"
+                        [title]="unidad.tipo + ' (' + unidad.estado + ')'">
+                        </map-marker>
+                    }
+                </google-map>
             </div>
         </section>
 
