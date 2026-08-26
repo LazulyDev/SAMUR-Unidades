@@ -169,7 +169,8 @@
                     @for (unidad of unidades(); track unidad.UIDunidad) {
                         <map-marker 
                         [position]="{ lat: unidad.latitud, lng: unidad.longitud }"
-                        [title]="unidad.tipo + ' (' + unidad.estado + ')'">
+                        [title]="unidad.tipo + ' (' + unidad.estado + ')'"
+                        [options]="getIconosPersonalizados(unidad.tipo)">
                         </map-marker>
                     }
                 </google-map>

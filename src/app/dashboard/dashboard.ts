@@ -18,6 +18,7 @@ export class Dashboard {
   unidades = toSignal(this.unidadesService.getUnidades(), { initialValue: [] });
 
   // definiciones de los ajustes para Google Maps
+  // TODO: para cuando se configure el panel de administración de los preventivos las coordenadas que tienen que salir serán las que se marquen en la configuración de los preventivos.
   center: google.maps.LatLngLiteral = {
     lat: 40.416775,
     lng: -3.70379
@@ -29,18 +30,38 @@ export class Dashboard {
     mapTypeId: 'roadmap'
   };
 
+  // CONFIGURACIÓN DE LOS ÍCONOS PARA LAS UNIDADES
+  private tipoUnidad: Record<string, string> = {
+    svb: '/iconosMapa/svb.png',
+    sva: '/iconosMapa/sva.png',
+    upr: '/iconosMapa/upr.png'
+  }
+
+  getIconosPersonalizados(tipo: string):google.maps.MarkerOptions {
+
+    const tipoNormalizado = tipo.trim().toLowerCase()
+    return {
+      icon: {
+        url: this.tipoUnidad[tipoNormalizado] ?? 
+        '/iconosMapa/upr.png', // TODO: crear un ícono genérico
+        scaledSize: new google.maps.Size(42, 56),
+        anchor: new google.maps.Point(21, 56)
+      }
+    }
+  }
+
   // creación de la unidad para pruebas en Firebase
   // TODO: no te olvides de borrarlo, no me seas...
 
   crearUnidad(){
     const nuevaUnidad = new Unidad(
-      '',                     // UIDunidad (Firebase lo generará automáticamente)
+      '',                     // UIDunidad
       'SVB',                  // tipo
       'disponible',           // estado
       [10101, 10102],         // numeroTetra
       600123456,              // numeroMovil
-      40.416775,              // latitud
-      -3.703790               // longitud
+      40.434583,              // latitud
+      -3.607806               // longitud
     );
 
     this.unidadesService.addUnidad(nuevaUnidad)
