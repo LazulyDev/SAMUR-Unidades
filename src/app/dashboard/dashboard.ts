@@ -3,6 +3,10 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { UnidadesService } from '../services/unidades';
 import { Unidad } from '../models/Unidad';
 import { GoogleMap, MapMarker } from '@angular/google-maps';
+import { Auth } from '../services/auth';
+import { Router } from '@angular/router';
+import { auth } from '../firebase';
+
 
 
 @Component({
@@ -13,6 +17,8 @@ import { GoogleMap, MapMarker } from '@angular/google-maps';
 })
 export class Dashboard {
   private unidadesService = inject(UnidadesService)
+  private readonly authService = inject(Auth)
+  private readonly router = inject(Router)
 
   // extracción de las unidades de Firestore
   unidades = toSignal(this.unidadesService.getUnidades(), { initialValue: [] });
@@ -49,6 +55,13 @@ export class Dashboard {
         anchor: new google.maps.Point(21, 56)
       }
     }
+  }
+
+  // FUNCION PARA EL CIERRE DE SESIÓN
+  // TODO: añadir un botón para cerrar sesión
+  async cerrarSesion(){
+    await this.authService.logOut()
+    await this.router.navigate(['login'])
   }
 
   // creación de la unidad para pruebas en Firebase
