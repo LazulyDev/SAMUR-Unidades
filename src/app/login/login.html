@@ -1,1 +1,79 @@
-<p>login works!</p>
+<div class="w-full h-screen flex">
+
+    <!-- Mitad izquierda: imagen -->
+    <div class="hidden md:block w-1/2 h-full">
+        <img
+        src="/imagenesLogin/imagen.jpg"
+        alt="Imagen de login"
+        class="w-full h-full object-cover object-center"
+        />
+    </div>
+
+    <!-- Mitad derecha: formulario -->
+    <div class="w-full md:w-1/2 h-full flex items-center justify-center bg-white px-8">
+        <form class="w-full max-w-sm flex flex-col gap-5"
+            [formGroup]="loginForm"
+            (ngSubmit)="iniciarSesion()">
+
+        <h1 class="text-2xl font-semibold text-gray-800 mb-2 text-center">
+            Iniciar sesión
+        </h1>
+
+        <!-- Usuario -->
+        <div class="flex flex-col gap-1">
+            <label for="usuario" class="text-sm font-medium text-gray-700">
+                Usuario
+            </label>
+            <input
+                id="usuario"
+                type="text"
+                name="usuario"
+                formControlName="usuario"
+                placeholder="Ingresa tu usuario"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+        </div>
+
+        <!-- Contraseña -->
+        <div class="flex flex-col gap-1">
+            <label for="password" class="text-sm font-medium text-gray-700">
+                Contraseña
+            </label>
+            <input
+                id="password"
+                type="password"
+                name="password"
+                formControlName="password"
+                placeholder="Ingresa tu contraseña"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+        </div>
+
+        <!-- Olvidé mi contraseña -->
+        <div class="flex justify-end">
+            <button
+            type="button"
+            class="text-sm text-blue-600 hover:underline"
+            (click)="recuperarPassword()"
+            >
+            ¿Olvidaste tu contraseña?
+            </button>
+        </div>
+        @if (MensajeError) {
+            <p class="text-sm text-red-600" role="alert">
+                {{ MensajeError }}
+            </p>
+        }
+
+        <!-- Botón iniciar sesión -->
+        <button
+            type="submit"
+            class="w-full bg-blue-600 text-white font-medium py-2 rounded-lg hover:bg-blue-700 transition-colors"
+        >
+            Iniciar sesión
+        </button>
+
+        </form>
+    </div>
+
+</div>

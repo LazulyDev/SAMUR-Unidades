@@ -31,6 +31,7 @@ export class Dashboard {
   };
 
   // CONFIGURACIÓN DE LOS ÍCONOS PARA LAS UNIDADES
+  // TODO: simplificar los íconos para que en la reducción se vean mejor
   private tipoUnidad: Record<string, string> = {
     svb: '/iconosMapa/svb.png',
     sva: '/iconosMapa/sva.png',
